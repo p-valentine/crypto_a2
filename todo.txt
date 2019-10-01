@@ -1,0 +1,3 @@
+do y = x^e (mod n) for ascii values 0 - 9 and make a list out of them
+
+once you have those nubmers iterate through the file encrypted_phi and find phi
