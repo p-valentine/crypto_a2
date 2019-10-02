@@ -1,14 +1,13 @@
 import numpy as np 
 import math
 
-#use built in pow function for doing power 
-#pow(base, power, modulus)
-#ex: pow(2, e, n)
+#do the pulverisor
+#if negative d add phi to d until you get a positive number
+#once find d - decrypt y^d mod n, then chop it up and take the ascii
+
 
 def find_phi(encrypted_vlaues):
-  
   phi_as_list = []
-
   with open("encrypted_phi.txt", "r") as f:
     for line in f:
       n = int(line)
@@ -18,9 +17,8 @@ def find_phi(encrypted_vlaues):
   print(phi_as_list)
   phi_string = "".join(phi_as_list)
   phi_as_int = int(phi_string)
+  print("\n\n", "Phi: ", phi_as_int)
   return phi_as_int
-
-
 
 def generate_encrypted_digits(e, n):
 
@@ -39,17 +37,11 @@ def main():
   f.close()
 
   encrypted_phi = generate_encrypted_digits(e,n)
-
   print(encrypted_phi, "\n\n")
-
   phi = find_phi(encrypted_phi)
 
   print("\n\n GCD:\n")
   print(math.gcd(phi, e))
 
-
-
 if __name__ == "__main__":
   main()
-
-
