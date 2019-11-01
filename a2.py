@@ -1,10 +1,6 @@
 import numpy as np 
 import math
 
-#do the pulverisor
-#if negative d add phi to d until you get a positive number
-#once find d - decrypt y^d mod n, then chop it up and take the ascii
-
 
 def find_phi(encrypted_vlaues):
   phi_as_list = []

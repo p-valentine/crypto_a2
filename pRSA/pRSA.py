@@ -3,8 +3,21 @@ import math
 import random
 import sys
 
-def isPrime():
+def isPrime(n, k):
+
+  if(n ==1 or n == 2):
+    return True
+  elif( n % 2 == 0 ):
+    return False
+  else:
+    print("other case")
+    pass
+
   pass
+
+def miller(n, k):
+  pass
+
 
 def getK():
   print("Input a positive integer 'K' as the security parameter: ")
@@ -22,8 +35,15 @@ def main():
     exit()
   j = sys.argv[1]
   k = int(j)
-  r = generateRandom(k)
+  r = random.getrandbits(k) #generates a random k-bit integer r
   print(r)
+  result = isPrime(r,4)
+
+  if(result == False):
+    print("not a prime number")
+  else:
+    print("Prime number!")
+  print(result)
 
 
 if __name__ == "__main__":
