@@ -35,7 +35,8 @@ def main():
     exit()
   j = sys.argv[1]
   k = int(j)
-  r = random.getrandbits(k) #generates a random k-bit integer r
+  r = random.randint(2 ** (k - 1), (2 ** k) - 1) #generates random k bit number
+
   print(r)
   result = isPrime(r,4)
 
