@@ -1,51 +1,63 @@
-import numpy as np 
 import math
 import random
 import sys
 
+
 def isPrime(n, k):
 
-  if(n ==1 or n == 2):
-    return True
-  elif( n % 2 == 0 ):
-    return False
-  else:
-    print("other case")
-    pass
+    if n == 1 or n == 2:
+        return True
+    else:
+        d = n - 1
+        s = 0
 
-  pass
+        while d % 2 == 0:
+            s = s + 1
+            d = int(d / 2)
 
-def miller(n, k):
-  pass
+        for i in range(1, k):
+            a = random.randint(2, n - 1)
+            x = pow(a, d, n)
+            if x == 1 or x == (n - 1):
+                continue
+            for k in range(1, s):
+                x = pow(x, 2, n)
+                if x == 1:
+                    print("x = 1")
+                    return "Composite"
+                elif x == (n - 1):
+                    print("x = n-1")
+                    break 
+            if x == 1 or x == (n - 1):
+                continue
+            return "composite"
+
+        return "prime"
 
 
 def getK():
-  print("Input a positive integer 'K' as the security parameter: ")
-  k = int(input())
-  return k
+    print("Input number of bits: ")
+    k = int(input())
+    return k
+
 
 def generateRandom(k):
-  r = random.getrandbits(k)
-  return r
+    r = random.getrandbits(k)
+    return r
 
 
 def main():
-  if(len(sys.argv) <= 1):
-    print("Error: integer argument required")
-    exit()
-  j = sys.argv[1]
-  k = int(j)
-  r = random.randint(2 ** (k - 1), (2 ** k) - 1) #generates random k bit number
+    k = getK()
+    is_odd = False
+    while is_odd is False:
+        r = random.randint(2 ** (k - 1), (2 ** k) - 1)  # generates random k bit number
+        print(r)
+        if r % 2 != 0:
+            is_odd = True
+    result = isPrime(r, 30)
 
-  print(r)
-  result = isPrime(r,4)
-
-  if(result == False):
-    print("not a prime number")
-  else:
-    print("Prime number!")
-  print(result)
+    print(result)
 
 
 if __name__ == "__main__":
-  main()
+    main()
