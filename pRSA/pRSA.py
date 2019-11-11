@@ -24,15 +24,15 @@ def isPrime(n, k):
                 x = pow(x, 2, n)
                 if x == 1:
                     print("x = 1")
-                    return "Composite"
+                    return False
                 elif x == (n - 1):
                     print("x = n-1")
-                    break 
+                    break
             if x == 1 or x == (n - 1):
                 continue
-            return "composite"
+            return False
 
-        return "prime"
+        return True
 
 
 def getK():
@@ -49,14 +49,16 @@ def generateRandom(k):
 def main():
     k = getK()
     is_odd = False
-    while is_odd is False:
-        r = random.randint(2 ** (k - 1), (2 ** k) - 1)  # generates random k bit number
-        print(r)
-        if r % 2 != 0:
-            is_odd = True
-    result = isPrime(r, 30)
+    result = False
+    while result is False:
+        while is_odd is False:
+            r = random.randint(2 ** (k - 1), (2 ** k) - 1)  # generates random k bit number
+            print(r)
+            if r % 2 != 0:
+                is_odd = True
+        result = isPrime(r, 30)
 
-    print(result)
+    print(result, r)
 
 
 if __name__ == "__main__":
