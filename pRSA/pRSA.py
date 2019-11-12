@@ -1,6 +1,4 @@
-import math
 import random
-import sys
 
 
 def isPrime(n, k):
@@ -46,17 +44,27 @@ def generateRandom(k):
     return r
 
 
+def generate_e_d():
+    pass
+
+
+def generate_p_q():
+    pass
+
+
+def compute_n_phi(p, q):
+    pass
+
+
 def main():
     k = getK()
     is_odd = False
-    result = False
-    while result is False:
-        while is_odd is False:
-            r = random.randint(2 ** (k - 1), (2 ** k) - 1)  # generates random k bit number
-            print(r)
-            if r % 2 != 0:
-                is_odd = True
-        result = isPrime(r, 30)
+    while is_odd is False:
+        r = random.randint(2 ** (k - 1), (2 ** k) - 1)  # generates random k bit number
+        print(r)
+        if r % 2 != 0:
+            is_odd = True
+    result = isPrime(r, 30)
 
     print(result, r)
 
