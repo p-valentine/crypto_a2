@@ -13,24 +13,24 @@ def isPrime(n, k):
             s = s + 1
             d = int(d / 2)
 
-        for i in range(1, k):
-            a = random.randint(2, n - 1)
+        for i in range(k):
+            a = random.randint(2, n - 2)
             x = pow(a, d, n)
-            if x == 1 or x == (n - 1):
-                continue
-            for k in range(1, s):
-                x = pow(x, 2, n)
-                if x == 1:
-                    print("x = 1")
-                    return False
-                elif x == (n - 1):
-                    print("x = n-1")
-                    break
-            if x == 1 or x == (n - 1):
-                continue
-            return False
+            if x != 1 and x != (n - 1) and not innerLoop(x, s, n):
+                return False
 
         return True
+
+
+def innerLoop(x, s, n):
+    for i in range(s):
+        x = pow(x, 2, n)
+        if x == 1:
+            print("x = 1 inner loop")
+            return False
+        elif x == (n - 1):
+            return True
+    return False
 
 
 def getK():
@@ -61,12 +61,12 @@ def main():
     is_odd = False
     while is_odd is False:
         r = random.randint(2 ** (k - 1), (2 ** k) - 1)  # generates random k bit number
-        print(r)
+        # print(r)
         if r % 2 != 0:
             is_odd = True
-    result = isPrime(r, 30)
+    result = isPrime(31, 100)
 
-    print(result, r)
+    print("result", result)
 
 
 if __name__ == "__main__":
