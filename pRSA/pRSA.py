@@ -44,8 +44,15 @@ def generateRandom(k):
     return r
 
 
-def generate_e_d():
-    pass
+def generate_e_d(phi):
+    gcd = 0
+    while gcd != 1:
+        e = random.randint(3, phi - 1)
+        gcd, _, d = pulverizer(phi, e)
+
+    a = e % phi
+    b = d % phi
+    return a, b
 
 
 def pulverizer(a, b):
@@ -98,6 +105,8 @@ def main():
     print("P= ", p, " Q= ", q)
     n, phi = compute_n_phi(p, q)
     print("N= ", n, "Phi= ", phi)
+    e, d = generate_e_d(phi)
+    print("e= ", e, "d= ", d)
 
 
 if __name__ == "__main__":
