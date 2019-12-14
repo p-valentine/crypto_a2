@@ -48,6 +48,16 @@ def generate_e_d():
     pass
 
 
+def pulverizer(a, b):
+    """return (g, x, y) such that a*x + b*y = g = gcd(a, b)"""
+    x0, x1, y0, y1 = 0, 1, 1, 0
+    while a != 0:
+        q, b, a = b // a, a, b % a
+        y0, y1 = y1, y0 - q * y1
+        x0, x1 = x1, x0 - q * x1
+    return b, x0, y0
+
+
 def generate_p_q(k):
     result = False
     p, q = None, None
@@ -87,7 +97,7 @@ def main():
     p, q = generate_p_q(k)
     print("P= ", p, " Q= ", q)
     n, phi = compute_n_phi(p, q)
-    print("N= ", n, "Phi= ", phi) 
+    print("N= ", n, "Phi= ", phi)
 
 
 if __name__ == "__main__":
