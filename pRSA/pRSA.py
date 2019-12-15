@@ -1,4 +1,5 @@
 import random
+import binascii
 
 
 def isPrime(n, k):
@@ -99,14 +100,49 @@ def compute_n_phi(p, q):
     return n, phi
 
 
+def encrypt(e, n):
+    encrypted_text = []
+    with open("input.txt") as f:
+        while True:
+            c = f.read(1)
+            if not c:
+                break
+            else:
+                k = ord(c)
+                x = pow(k, e, n)
+                encrypted_text.append(x)
+    return encrypted_text
+
+
+def decrypt_message(cipher, d, n):
+    decrypted = []
+    # with open("encrypted_text.txt", "r") as f:
+    #     while True:
+    #         x = f.readline()
+
+    for y in cipher:
+        dec = pow(y, d, n)
+        print(chr(dec))
+        decrypted.append(chr(dec))
+
+    return dec
+
+
 def main():
     k = getK()
     p, q = generate_p_q(k)
-    print("P= ", p, " Q= ", q)
+    print("P= ", p, "\n", "Q= ", q)
     n, phi = compute_n_phi(p, q)
-    print("N= ", n, "Phi= ", phi)
+    print("N= ", n, "\n", "Phi= ", phi)
     e, d = generate_e_d(phi)
-    print("e= ", e, "d= ", d)
+    print("e= ", e, "\n", "d= ", d)
+
+    message = encrypt(e, n)
+    encrypted_text_file = open("encrypted_text.txt", "w")
+    for i in message:
+        print(i, file=encrypted_text_file)
+    decrypted_text = decrypt_message(message, d, n)
+    print("decrypted text: ", decrypted_text)
 
 
 if __name__ == "__main__":
